@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gyojincompany.springboard.command.BCommand;
+import com.gyojincompany.springboard.command.BContentCommand;
 import com.gyojincompany.springboard.command.BListCommand;
 import com.gyojincompany.springboard.command.BWriteCommand;
 
@@ -39,5 +40,16 @@ public class BController {
 		command.execute(model);//model 에 list(ArrayList<BDto> dtos)가 탑재
 		
 		return "list";
+	}
+	
+	@RequestMapping(value = "/content_view")
+	public String content_view(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BContentCommand();
+		command.execute(model);
+		
+		return "content_view";
 	}
 }
