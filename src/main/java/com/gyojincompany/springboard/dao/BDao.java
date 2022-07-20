@@ -108,6 +108,9 @@ public class BDao {
 	}
 	
 	public BDto contentView(String strbid) {
+		
+		this.upHit(strbid);
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -217,6 +220,36 @@ public class BDao {
 				e.printStackTrace();
 			}			
 		}
+	}
+	
+	private void upHit(String bid) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			String sql = "UPDATE mvc_board SET bhit=bhit+1 WHERE bid=?";
+			pstmt = conn.prepareStatement(sql);			
+			pstmt.setInt(1, Integer.parseInt(bid));
+			pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn !=null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}			
+		}
+		
 	}
 	
 	
