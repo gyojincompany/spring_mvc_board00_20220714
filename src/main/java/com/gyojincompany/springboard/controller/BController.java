@@ -11,6 +11,8 @@ import com.gyojincompany.springboard.command.BContentCommand;
 import com.gyojincompany.springboard.command.BDeleteCommand;
 import com.gyojincompany.springboard.command.BListCommand;
 import com.gyojincompany.springboard.command.BModifyCommand;
+import com.gyojincompany.springboard.command.BReplyCommand;
+import com.gyojincompany.springboard.command.BReplyViewCommand;
 import com.gyojincompany.springboard.command.BWriteCommand;
 
 @Controller
@@ -73,6 +75,28 @@ public class BController {
 		
 		command = new BModifyCommand();
 		command.execute(model);		
+		
+		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "/reply_view")
+	public String reply_view(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BReplyViewCommand();
+		command.execute(model);
+		
+		return "reply_view";
+	}
+	
+	@RequestMapping(value = "/reply")
+	public String reply(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BReplyCommand();
+		command.execute(model);
 		
 		return "redirect:list";
 	}

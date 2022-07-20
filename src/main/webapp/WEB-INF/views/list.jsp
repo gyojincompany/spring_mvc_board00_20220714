@@ -10,11 +10,11 @@
 <body>
 	<h2>자유게시판 글목록</h2>
 	<hr>
-	<table width="600" cellpadding="0" cellspacing="0" border="1">
+	<table width="900" cellpadding="0" cellspacing="0" border="1">
 		<tr align="center" bgcolor="#D9E5FF">
 			<td>번호</td>
 			<td>글쓴이</td>
-			<td>제목</td>
+			<td width="500">제목</td>
 			<td>등록일</td>
 			<td>조회수</td>			
 		</tr>
@@ -23,7 +23,10 @@
 			<tr>
 				<td>${dto.bid }</td>
 				<td>${dto.bname }</td>
-				<td><a href="content_view?bid=${dto.bid }">${dto.btitle }</a></td>
+				<td>
+					<c:forEach begin="1" end="${dto.bindent}">&nbsp;&nbsp;</c:forEach>
+					<a href="content_view?bid=${dto.bid }">${dto.btitle }</a>
+				</td>
 				<td>${dto.bdate }</td>
 				<td>${dto.bhit }</td>	
 			</tr>
