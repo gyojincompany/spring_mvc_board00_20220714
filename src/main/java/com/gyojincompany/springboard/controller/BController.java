@@ -10,6 +10,7 @@ import com.gyojincompany.springboard.command.BCommand;
 import com.gyojincompany.springboard.command.BContentCommand;
 import com.gyojincompany.springboard.command.BDeleteCommand;
 import com.gyojincompany.springboard.command.BListCommand;
+import com.gyojincompany.springboard.command.BModifyCommand;
 import com.gyojincompany.springboard.command.BWriteCommand;
 
 @Controller
@@ -61,6 +62,17 @@ public class BController {
 		
 		command = new BDeleteCommand();
 		command.execute(model);
+		
+		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "/modify")
+	public String modify(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BModifyCommand();
+		command.execute(model);		
 		
 		return "redirect:list";
 	}

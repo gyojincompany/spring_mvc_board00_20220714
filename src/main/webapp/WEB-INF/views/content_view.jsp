@@ -11,6 +11,7 @@
 	<hr>
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
 		<form action="modify">
+			<input type="hidden" name="bid" value="${dto.bid }">
 			<tr>
 				<td>글쓴이</td>
 				<td><input type="text" name="bname" size="50" value="${dto.bname }"></td>
