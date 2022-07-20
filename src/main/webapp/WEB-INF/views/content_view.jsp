@@ -28,8 +28,8 @@
 			<tr>
 				<td colspan="2" align="right">
 					<input type="submit" value="수정">
-					<!-- <input type="button" value="삭제" onclick="location.href='delete'"> -->
-					<a href="delete?bid=${dto.bid }">삭제</a>										
+					<input type="button" value="삭제" onclick="location.href='delete?bid='+${dto.bid}">
+					<!-- <a href="delete?bid=${dto.bid }">삭제</a> -->										
 					<input type="button" value="목록" onclick="location.href='list'">
 				</td>
 			</tr>

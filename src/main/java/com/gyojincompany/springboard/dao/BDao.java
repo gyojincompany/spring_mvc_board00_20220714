@@ -157,4 +157,35 @@ public class BDao {
 		return dto;
 	}
 	
+	public void delete(String strbid) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			String sql = "DELETE FROM mvc_board WHERE bid=?";
+			pstmt = conn.prepareStatement(sql);	
+			pstmt.setInt(1, Integer.parseInt(strbid));
+			//문자열로 들어온 strbid를 int형으로 형변환
+			pstmt.executeUpdate();			
+			
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			try {				
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn !=null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}			
+		}
+		
+	}
+	
 }
